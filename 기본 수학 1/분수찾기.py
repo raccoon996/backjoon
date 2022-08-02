@@ -14,6 +14,4 @@ while True:
         break
     old_N_sum = N_sum
 
-
-
-
+NN=1
