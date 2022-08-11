@@ -5,27 +5,25 @@ while True:
     N_temp = int(sys.stdin.readline())
     if N_temp == 0:
         break
-    N.append(N_temp)
+    else:
+        Num1 = N_temp
+        Num2 = N_temp * 2 + 1
 
+        # 에라토스테네스의 체 이용
+        temp_number = [True] * (Num2) # True이면 소수이다.
+        # 0 과 1은 소수에서 제외
+        # temp_number[0] = False  
+        # temp_number[1] = False
 
-for Num in range(len(N)):
-    Num1 = N[Num]
-    Num2 = N[Num] * 2
-    N[Num] = 0
-    # for i in range(Num2 - Num1):
-    #     prime_number = True
-    #     j = 2
-    #     test_num = i
-    #     if test_num > 1: # 1은 소수가 아니다.
-    #         while j < test_num: 
-    #             # 소수가 아닌것
-    #             if test_num % j == 0:
-    #                 prime_number = False
-    #                 break
-    #             j += 1
-    #         # 소수가 인것
-    #         if prime_number == True:
-    #             N[Num] += 1
-    #     else:
-    #         N[Num] += 1
-    # i += 1
+        max_divide_Primenum = int(Num2 ** 0.5)
+
+        for i in range(2, max_divide_Primenum + 1): # 1 부터 시작하면 모든것이 소수가 아니게 된다.
+            if temp_number[i] == True: # 소수의 배수이면 소수가 아니다.
+                for j in range(i+i, Num2, i): # i*2는 소수이후 배수부터
+                    temp_number[j] = False
+
+        count = 0
+        for i in range(Num1+1, Num2):
+            if temp_number[i] == True:
+                count += 1
+        print(count)
